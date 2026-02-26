@@ -25,6 +25,8 @@ const createTransporter = () => {
 
 // POST /api/contact
 router.post('/', async (req, res) => {
+  console.log(req.body);
+  
   const { error, value } = contactSchema.validate(req.body)
   if (error) {
     return res.status(400).json({ message: error.details[0].message })
