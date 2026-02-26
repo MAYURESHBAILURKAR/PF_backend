@@ -28,6 +28,7 @@ router.post('/', async (req, res) => {
   console.log(req.body);
   
   const { error, value } = contactSchema.validate(req.body)
+   console.log(error, value);
   if (error) {
     return res.status(400).json({ message: error.details[0].message })
   }
