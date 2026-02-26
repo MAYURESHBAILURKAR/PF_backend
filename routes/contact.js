@@ -25,10 +25,7 @@ const createTransporter = () => {
 
 // POST /api/contact
 router.post('/', async (req, res) => {
-  console.log(req.body);
-  
   const { error, value } = contactSchema.validate(req.body)
-   console.log(error, value);
   if (error) {
     return res.status(400).json({ message: error.details[0].message })
   }
@@ -69,6 +66,7 @@ router.post('/', async (req, res) => {
       })
     } catch (emailErr) {
       // Don't fail the request if email fails — contact is saved to DB
+      return res.status(400).json({ message: 'Error occured, Try sending mail directly, But not to worry your details are saved by the Team and will contact you soon' })
       console.error('Email send failed:', emailErr.message)
     }
   }
